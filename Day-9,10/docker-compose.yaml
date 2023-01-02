@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  server:
+    build:  ./flask-todo
+    ports: 
+    - "5000:5000"
+    volumes: 
+    - ./flask-todo:/app
+    environment: 
+      FLASK_ENV: development
+  web:
+    build: ./React-Todo
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ./React-Todo:/user/src/app
+    depends_on: 
+      - server
